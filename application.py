@@ -1,20 +1,15 @@
 import pickle
 import numpy as np
 from flask import Flask, request, render_template
-
-# Flask app initialize
 application = Flask(__name__)
 app = application
-
 # Load trained ML model + scaler
 ridge_model = pickle.load(open('models/ridge.pkl', 'rb'))
 scaler = pickle.load(open('models/scaler.pkl', 'rb'))
-
 # Home Page
 @app.route('/')
 def index():
     return render_template('index.html')
-
 # Prediction Route
 @app.route('/predictdata', methods=['GET', 'POST'])
 def predict_datapoint():
